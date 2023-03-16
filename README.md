@@ -38,7 +38,7 @@ By default, the datasets are put in ```<root_dir>/../data```. An alternative opt
 ...
 ```
 
-* **Cityscapes**: Please follow the instructions in [Cityscape](https://www.cityscapes-dataset.com/) to download the images and validation ground-truths. The Cityscapes dataset directory should have this basic structure:
+* **Cityscapes**: Please follow the instructions in [Cityscapes](https://www.cityscapes-dataset.com/) to download the images and validation ground-truths. The Cityscapes dataset directory should have this basic structure:
 ```bash
 <root_dir>/../data/Cityscapes/                         % Cityscapes dataset root
 <root_dir>/../data/Cityscapes/leftImg8bit              % Cityscapes images
@@ -54,7 +54,7 @@ For each dataset analized, there is a <dataset_name>_utils.py file in the <root_
 ### Train 
 
 run the command line:
-python main.py --config config/<experiment>.yalm
+python main.py --config config/<experiment_name>.yalm
 
 ### Validate
 
