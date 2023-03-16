@@ -12,8 +12,8 @@ Pytorch implementation of our paper [On exploring weakly supervised domain adapt
 ### Installation
 0. Clone the repo:
 ```bash
-$ git clone 
-$ cd 
+$ git clone https://github.com/RobertoAlcoverCouso/OEWSDA
+$ cd OEWSDA
 ```
 
 1. Install OpenCV if you don't already have it:
