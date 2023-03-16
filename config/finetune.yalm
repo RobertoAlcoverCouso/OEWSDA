@@ -1,0 +1,16 @@
+model_root: ./results
+architecture: FCN
+restore_file: ./results/FCN.pth
+batch_size: 3
+lr: 0.001
+momentum: 0.9
+w_decay: 0.00001
+epochs: 50
+gamma: 0.5
+train_set:
+    Cityscapes: 0.05
+validation_set: CityscapesValCS
+train_mode: finetune
+doval: true
+weighted_loss: true
+show_on_val: false

@@ -1,0 +1,22 @@
+model_root: ./results
+architecture: FCN
+batch_size: 3
+lr: 0.001
+momentum: 0.9
+w_decay: 0.00001
+epochs: 50
+gamma: 0.9
+decay: 0.75
+initial: 1
+train_set:
+    MSS50: 1
+    MSS100: 1
+    MSS250: 1
+    MSS750: 1
+    GTAV: 1
+    Cityscapes: 1
+validation_set: CityscapesValCS
+train_mode: curriculum
+doval: true
+weighted_loss: true
+show_on_val: false
