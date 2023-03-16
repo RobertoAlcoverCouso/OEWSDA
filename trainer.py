@@ -112,8 +112,7 @@ class Trainer:
         self.model_file = os.path.join(self.model_dir, architecture+ str(datetime.now()).replace(" ", "")+ ".pth")
         #Get model 
         if self.DL3:
-            self.model  =  torch.load("pretrained/init")
-            #self.model = torchvision.models.segmentation.deeplabv3_resnet101(progress=True, num_classes=20)
+            self.model  =  torch.load("pretrained/init.pth")
         elif self.PSP:
             self.model = PSPNet(n_classes=20)
         else:
