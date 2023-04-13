@@ -15,14 +15,18 @@ Pytorch implementation of our paper [On exploring weakly supervised domain adapt
 $ git clone https://github.com/RobertoAlcoverCouso/OEWSDA
 $ cd OEWSDA
 ```
-
-1. Install OpenCV if you don't already have it:
+1. Create a conda environment:
+```bash
+$ conda create -n OEWSDA python=3.7
+$ conda activate OEWSDA
+``` 
+2. Install OpenCV if you don't already have it:
 
 ```bash
 $ conda install -c menpo opencv
 ```
 
-2. Install this repository and the dependencies using pip:
+3. Install this repository and the dependencies using pip:
 ```bash
 $ pip install -e <root_dir>
 ```
