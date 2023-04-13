@@ -26,9 +26,9 @@ $ conda activate OEWSDA
 $ conda install -c menpo opencv
 ```
 
-3. Install this repository and the dependencies using pip:
+3. Install this repository and the dependencies using pip ```<root_dir>``` stands for ```./``` if you follow the instructions:
 ```bash
-$ pip install -e <root_dir>
+$ pip install -e <root_dir> 
 ```
 ### Datasets
 By default, the datasets are put in ```<root_dir>/../data```. An alternative option is to explicitlly specify the parameters in the cfg file.
