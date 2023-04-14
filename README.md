@@ -53,7 +53,11 @@ By default, the datasets are put in ```<root_dir>/../data```. An alternative opt
 ```
 ### Prepare the datasets
 
-For each dataset analized, there is a <dataset_name>_utils.py file in the <root_dir>/dataset folder. This file will transform the semantic labels to the Cityscapes train labels  to be employed.
+For each dataset analized, there is a <dataset_name>_utils.py file in the <root_dir>/dataset folder. This file will transform the semantic labels to the Cityscapes train labels  to be employed. For example for the Cityscapes dataset:
+```bash
+$ python  dataset/cityscapes_utils.py
+```
+
 
 ### Train 
 
