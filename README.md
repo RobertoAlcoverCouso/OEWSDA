@@ -20,9 +20,10 @@ $ cd OEWSDA
 $ conda create -n OEWSDA python=3.7
 $ conda activate OEWSDA
 ``` 
-2. Install OpenCV if you don't already have it:
+2. Install OpenCV and pytorch if you don't already have it:
 
 ```bash
+$ conda install pytorch=0.4.1 cuda90 torchvision -c pytorch
 $ conda install -c menpo opencv
 ```
 
