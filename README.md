@@ -57,12 +57,25 @@ For each dataset analized, there is a <dataset_name>_utils.py file in the <root_
 ```bash
 $ python  dataset/cityscapes_utils.py
 ```
+This should have created 3 csvs for each of the subsets:  "trainCS.csv", "valCS.csv" and "testCS.csv"
 
 
 ### Train 
 
-run the command line:
+Modify the yalm file corresponding to the experiment you want to run "<experiment_name>.yalm" to include the datasets you want to train with, the proportion to use in the range of 0-1 as follows and the model you want to use as follows:
+```yalm
+architecture: <architecture_name>
+train_set:
+    <dataset_1>: <proportion_of_dataset_1>
+    <dataset_2>: <proportion_of_dataset_2>
+    ...
+```
+<architecture_name> is expected to be one of the following: "deeplabv3","FCN" or "psp"
+To train run the command line:
+```bash
 python main.py --config config/<experiment_name>.yalm
+```
+Note that for fine_tuning a restore file is expected in the "restore_file" argument.
 
 ### Validate
 
