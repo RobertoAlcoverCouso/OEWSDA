@@ -15,16 +15,21 @@ Pytorch implementation of our paper [On exploring weakly supervised domain adapt
 $ git clone https://github.com/RobertoAlcoverCouso/OEWSDA
 $ cd OEWSDA
 ```
-
-1. Install OpenCV if you don't already have it:
+1. Create a conda environment:
+```bash
+$ conda create -n OEWSDA python=3.7
+$ conda activate OEWSDA
+``` 
+2. Install OpenCV and pytorch if you don't already have it:
 
 ```bash
+$ conda install pytorch=0.4.1 cuda90 torchvision -c pytorch
 $ conda install -c menpo opencv
 ```
 
-2. Install this repository and the dependencies using pip:
+3. Install this repository and the dependencies using pip ```<root_dir>``` stands for ```./``` if you follow the instructions:
 ```bash
-$ pip install -e <root_dir>
+$ pip install -e <root_dir> 
 ```
 ### Datasets
 By default, the datasets are put in ```<root_dir>/../data```. An alternative option is to explicitlly specify the parameters in the cfg file.
@@ -49,12 +54,29 @@ By default, the datasets are put in ```<root_dir>/../data```. An alternative opt
 ```
 ### Prepare the datasets
 
-For each dataset analized, there is a <dataset_name>_utils.py file in the <root_dir>/dataset folder. This file will transform the semantic labels to the Cityscapes train labels  to be employed.
+For each dataset analized, there is a <dataset_name>_utils.py file in the <root_dir>/dataset folder. This file will transform the semantic labels to the Cityscapes train labels  to be employed. For example for the Cityscapes dataset:
+```bash
+$ python  dataset/cityscapes_utils.py
+```
+This should have created 3 csvs for each of the subsets:  "trainCS.csv", "valCS.csv" and "testCS.csv"
+
 
 ### Train 
 
-run the command line:
+Modify the yalm file corresponding to the experiment you want to run "<experiment_name>.yalm" to include the datasets you want to train with, the proportion to use in the range of 0-1 as follows and the model you want to use as follows:
+```yalm
+architecture: <architecture_name>
+train_set:
+    <dataset_1>: <proportion_of_dataset_1>
+    <dataset_2>: <proportion_of_dataset_2>
+    ...
+```
+<architecture_name> is expected to be one of the following: "deeplabv3","FCN" or "psp"
+To train run the command line:
+```bash
 python main.py --config config/<experiment_name>.yalm
+```
+Note that for fine_tuning a restore file is expected in the "restore_file" argument.
 
 ### Validate
 

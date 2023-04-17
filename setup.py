@@ -6,5 +6,6 @@ setup(name='OEWSSSS',
                         'easydict', 'matplotlib',
                         'scipy', 'scikit-image',
                         'future', 'setuptools',
-                        'tqdm', 'cffi'],
+                        'tqdm', 'cffi',
+                        'pandas'],
       packages=find_packages())
