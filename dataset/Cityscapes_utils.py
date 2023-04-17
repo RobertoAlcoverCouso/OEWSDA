@@ -15,7 +15,7 @@ import os
 #############################
     # global variables #
 #############################
-root_dir  = "./../Cityscapes/"
+root_dir  = "./../data/Cityscapes/"
 
 label_dir = os.path.join(root_dir, "gtFine")
 train_dir = os.path.join(label_dir, "train")
@@ -104,8 +104,6 @@ def parse_label():
     
     # parse train, val, test data    
     for label_dir, index_dir, csv_file in zip([train_dir, val_dir, test_dir], [train_idx_dir, val_idx_dir, test_idx_dir], [train_file, val_file, test_file]):
-        if "test" not in test_file:
-            continue
         f = open(csv_file, "w")
         f.write("img,label\n")
         for city in os.listdir(label_dir):
@@ -121,10 +119,6 @@ def parse_label():
                 img_name = filename.split("gtFine")[0] + "leftImg8bit.png"
                 img_name = os.path.join(data_dir, img_name)
                 f.write("{},{}.png\n".format(img_name, lab_name))
-
-                if os.path.exists(lab_name + '.png'):
-                    print("Skip %s" % (filename))
-                    continue
                 print("Parse %s" % (filename))
                 img = os.path.join(city_dir, filename)
                 img = np.asarray(Image.open(img).convert('RGB'))
