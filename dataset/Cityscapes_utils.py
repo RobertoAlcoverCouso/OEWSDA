@@ -118,7 +118,7 @@ def parse_label():
                 lab_name = os.path.join(city_idx_dir, filename)
                 img_name = filename.split("gtFine")[0] + "leftImg8bit.png"
                 img_name = os.path.join(data_dir, img_name)
-                f.write("{},{}.png\n".format(img_name, lab_name))
+                f.write("{},{}\n".format(img_name, lab_name))
                 print("Parse %s" % (filename))
                 img = os.path.join(city_dir, filename)
                 img = np.asarray(Image.open(img).convert('RGB'))
