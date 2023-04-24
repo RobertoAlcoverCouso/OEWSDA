@@ -65,7 +65,9 @@ This should have created 3 csvs for each of the subsets:  "trainCS.csv", "valCS.
 
 * **Model weights**: If you intend on using deeplab please download the [imagenet-pretrained backbone weights](http://www-vpu.eps.uam.es/publications/WSDA_publications/model_zoo/Imagenet_pretrained/init.pth).
 
+Additional weights can be found in the [publication page](http://www-vpu.eps.uam.es/publications/WSDA_publications/)
 
+* **Train**:
 Modify the yalm file corresponding to the experiment you want to run "<experiment_name>.yalm" to include the datasets you want to train with, the proportion to use in the range of 0-1 as follows and the model you want to use as follows:
 ```yalm
 architecture: <architecture_name>
