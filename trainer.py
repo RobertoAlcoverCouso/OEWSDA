@@ -13,6 +13,7 @@ import time
 import os
 from tqdm import tqdm
 from networks.fcn import VGGNet, FCNs
+from networks import fcn
 from cfg import *
 from utils import *
 from networks.pspnet import PSPNet
@@ -123,7 +124,7 @@ class Trainer:
         if train_args.restore_file:
             #Load net if needed 
             if os.path.exists(train_args.restore_file):
-                state_dict =  torch.load(train_args.restore_file)
+                state_dict =  torch.load(train_args.restore_file, map_location="cpu")
                 if isinstance(state_dict, collections.OrderedDict):
                     self.model.load_state_dict(state_dict)
                 else:
@@ -290,8 +291,9 @@ class Trainer:
 
         self.train(epochs,args)
 
-    def val(self, epoch, show=False):
+    def val(self, epochs, args, show=False):
         performance = 0
+        self.model.eval()
         with torch.no_grad():
             for i, test in enumerate(self.validation_loaders):
                 total_ious = []
@@ -303,15 +305,16 @@ class Trainer:
                         else:
                             inputs = Variable(batch['X'])
                         outputs = self.model(inputs)
-                        if self.DL3:
+                        if isinstance(outputs, dict):
                             outputs = outputs["out"]
-                        
-                        if self.PSP:
+                            output = outputs.data.cpu().numpy()
+                        elif self.PSP:
                             output = outputs[0].detach().cpu(). numpy()
                         else:
                             output = outputs.data.cpu().numpy()
 
                     N, _, h, w = output.shape
+
                     pred = output.transpose(0, 2, 3, 1).reshape(-1, 20).argmax(axis=1).reshape(N, h, w)
 
                     target = batch['Y'].cpu().numpy().reshape(N, h, w)
@@ -335,8 +338,11 @@ class Trainer:
                 
                 meanIoU = np.nanmean(ious)
                 performance += meanIoU
-                print("epoch{}, pix_acc: {}, meanIoU: {}, IoUs: {}".format(epoch, pixel_accs, meanIoU, ious))
+                print("epoch{}, pix_acc: {}, meanIoU: {}, IoUs: {}".format(epochs, pixel_accs, meanIoU, ious))
+            self.model.train()
             if performance >= self.max_performance and self.model_file is not None:
                 self.max_performance  = performance
+                print("saving:", self.model_file)
                 torch.save(self.model, self.model_file)
+        
         return performance

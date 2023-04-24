@@ -63,6 +63,9 @@ This should have created 3 csvs for each of the subsets:  "trainCS.csv", "valCS.
 
 ### Train 
 
+* **Model weights**: If you intend on using deeplab please download the [imagenet-pretrained backbone weights](http://www-vpu.eps.uam.es/publications/WSDA_publications/model_zoo/Imagenet_pretrained/init.pth).
+
+
 Modify the yalm file corresponding to the experiment you want to run "<experiment_name>.yalm" to include the datasets you want to train with, the proportion to use in the range of 0-1 as follows and the model you want to use as follows:
 ```yalm
 architecture: <architecture_name>
@@ -81,4 +84,8 @@ Note that for fine_tuning a restore file is expected in the "restore_file" argum
 ### Validate
 
 run the command line: 
+```bash
 python main.py -r <model_to_validate> --config config/validate.yalm
+```
+
+### Model weights:

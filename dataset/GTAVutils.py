@@ -96,7 +96,7 @@ csv_file.write("img,label\n")
 for name in os.listdir(images_dir):
     img_name = os.path.join(images_dir, name)
     fine_label = os.path.join(labels_dir, name)
-    label_np_name = os.path.join(gt_dir, name + "CS")
+    label_np_name = os.path.join(gt_dir, name)
     if os.path.exists(label_np_name):
         csv_file.write("{},{}\n".format(img_name, label_np_name ))
         continue
@@ -118,7 +118,7 @@ for name in os.listdir(images_dir):
                 # no index, assign to void
                 label[h, w] = 0
     label = label.astype(np.uint8)
-    Image.fromarray(label, mode='L').save(label_np_name+ "CS.png")
-    csv_file.write("{},{}\n".format(img_name, label_np_name+ "CS.png"))
+    Image.fromarray(label, mode='L').save(label_np_name)
+    csv_file.write("{},{}\n".format(img_name, label_np_name))
 
 csv_file.close()
